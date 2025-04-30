@@ -1,10 +1,7 @@
 package com.ndm.portfolio.ToDo.Model.User;
 
 import com.ndm.portfolio.ToDo.DTO.User.UserDTO;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.util.Date;
 
@@ -14,11 +11,14 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
+    @Column(unique = true)
     private String mail;
     private String job;
     private String phone;
     private String address;
+    @Column(name = "REASON_SEARCH")
     private String reason;
+    @Column(name = "DATE_OF_BIRTH")
     private Date date;
     private String password;
 

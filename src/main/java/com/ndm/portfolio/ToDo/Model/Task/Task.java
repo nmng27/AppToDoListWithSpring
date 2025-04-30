@@ -1,10 +1,7 @@
 package com.ndm.portfolio.ToDo.Model.Task;
 
 import com.ndm.portfolio.ToDo.DTO.Task.TaskDTO;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.util.Date;
 
@@ -14,6 +11,7 @@ public class Task {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String name;
+    @Column(name = "date_task")
     private Date date;
     private String category;
     private Boolean status;
