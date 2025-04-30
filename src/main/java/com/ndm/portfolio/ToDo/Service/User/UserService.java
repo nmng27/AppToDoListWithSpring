@@ -1,5 +1,6 @@
 package com.ndm.portfolio.ToDo.Service.User;
 
+import com.ndm.portfolio.ToDo.DTO.Login.LoginDTO;
 import com.ndm.portfolio.ToDo.DTO.User.UserDTO;
 import com.ndm.portfolio.ToDo.Model.User.User;
 import com.ndm.portfolio.ToDo.Repository.User.UserRepository;
@@ -67,6 +68,16 @@ public class UserService {
     public User    GetById(int id){
         try{
             User user = userRepository.findById(id).get();
+            return user;
+        }catch(Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public User login(LoginDTO dto){
+        try{
+            User user = userRepository.findByMailAndPassword(dto.username, dto.password);
             return user;
         }catch(Exception e){
             e.printStackTrace();

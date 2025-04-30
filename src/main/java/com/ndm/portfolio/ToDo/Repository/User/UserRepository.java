@@ -4,5 +4,5 @@ import com.ndm.portfolio.ToDo.Model.User.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepository extends JpaRepository<User, Integer> {
-    public User findByEmailAndPassword(String email, String password);
+    public User findByMailAndPassword(String email, String password);
 }
