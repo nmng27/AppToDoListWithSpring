@@ -23,6 +23,18 @@ dependencies {
 	runtimeOnly 'org.postgresql:postgresql'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+	// Dependência do Flyway
+	implementation 'org.flywaydb:flyway-core'
+
+	// Dependências para JWT (jjwt)
+	implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
+	runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.5'
+	runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.11.5'
+
+	// Se você pretende usar o Spring Security para a segurança JWT,
+	// você provavelmente já tem essa dependência. Caso contrário, adicione:
+	// implementation 'org.springframework.boot:spring-boot-starter-security'
 }
 
 tasks.named('test') {
