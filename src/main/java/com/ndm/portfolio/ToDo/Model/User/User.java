@@ -2,11 +2,15 @@ package com.ndm.portfolio.ToDo.Model.User;
 
 import com.ndm.portfolio.ToDo.DTO.User.UserDTO;
 import jakarta.persistence.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 @Entity(name = "TB_USER")
-public class User {
+public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -21,6 +25,15 @@ public class User {
     @Column(name = "DATE_OF_BIRTH")
     private Date date;
     private String password;
+    private String role;
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
 
     public int getId() {
         return id;
@@ -86,15 +99,45 @@ public class User {
         this.date = date;
     }
 
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of();
+    }
+
     public String getPassword() {
         return password;
+    }
+
+    @Override
+    public String getUsername() {
+        return mail;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return UserDetails.super.isAccountNonExpired();
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return UserDetails.super.isAccountNonLocked();
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return UserDetails.super.isCredentialsNonExpired();
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return UserDetails.super.isEnabled();
     }
 
     public void setPassword(String password) {
         this.password = password;
     }
 
-    public User(int id, String name, String mail, String job, String phone, String address, String reason, Date date, String password) {
+    public User(int id, String name, String mail, String job, String phone, String address,String role, String reason, Date date, String password) {
         this.id = id;
         this.name = name;
         this.mail = mail;
@@ -103,6 +146,7 @@ public class User {
         this.address = address;
         this.reason = reason;
         this.date = date;
+        this.role = role;
         this.password = password;
     }
 
@@ -117,5 +161,6 @@ public class User {
         this.address = user.address;
         this.reason = user.reason;
         this.password = user.password;
+        this.role = user.role;
     }
 }

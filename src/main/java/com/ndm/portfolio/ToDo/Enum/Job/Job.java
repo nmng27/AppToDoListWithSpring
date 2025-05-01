@@ -1,0 +1,9 @@
+package com.ndm.portfolio.ToDo.Enum.Job;
+
+public enum Job {
+    ADMINISTRADOR,
+    COMERCIAL, FINANCEIRO,
+    DESENVOLVEDOR, DESIGNER,
+    MÉDICO, ENFERMEIRO, FARMACEUTICO,
+    GESTOR, GERENTE, OUTRO
+}

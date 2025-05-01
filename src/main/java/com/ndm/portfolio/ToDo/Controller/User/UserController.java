@@ -9,6 +9,7 @@ import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.HttpClientErrorException;
 
@@ -37,8 +38,8 @@ public class UserController {
     @PostMapping("/login")
     public ResponseEntity<User> login(@RequestBody LoginDTO credentials) {
         try{
-            User user = userService.login(credentials);
-            return  ResponseEntity.ok(user);
+            UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(credentials.username,credentials.password);
+            return ResponseEntity.ok().build();
         }catch(HttpClientErrorException.NotFound ex){
             return  ResponseEntity.notFound().build();
         }catch (HttpClientErrorException.BadRequest ex){

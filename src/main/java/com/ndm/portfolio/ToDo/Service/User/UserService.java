@@ -37,6 +37,7 @@ public class UserService {
             new_user.setJob(dto.job);
             new_user.setReason(dto.reason);
             new_user.setPassword(dto.password);
+            new_user.setRole(dto.role);
             userRepository.save(new_user);
             return new_user;
         }catch(Exception e){
